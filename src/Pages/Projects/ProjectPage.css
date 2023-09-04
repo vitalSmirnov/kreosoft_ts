@@ -1,0 +1,55 @@
+
+.project-header-label {
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.project-label {
+    padding-top: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.repository-label{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.list-items-justify {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-bottom-padding {
+    padding-bottom: 2em;
+}
+.col-left-padding{
+    padding-left: 1em;
+}
+.col-right-padding{
+    padding-right: 1em;
+}
+.min-h-container{
+    min-height: 200px;
+}
+.display-column{
+    display: flex;
+    flex-direction: column;
+}
+.margin-initial{
+    margin: 1em;
+}
+.display-flex{
+    display: flex;
+}
+.margin-top{
+    margin-top: 2em;
+}
+.bordered-container{
+    margin: 2em 0;
+    border: 2px #519dd4 dashed;
+    border-radius: 10px;
+    padding: 2em;
+}

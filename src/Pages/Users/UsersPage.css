@@ -1,0 +1,59 @@
+.user-container{
+    padding: 2em;
+    border-radius: 10px;
+}
+.container-wrapper{
+    padding: 2em;
+}
+.background-light{
+    background: white;
+}
+.min-h-55{
+    min-height: 55vh;
+}
+.users-header{
+    font-size: 3em;
+    font-weight: 600;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+.object-link-non-decorate{
+    text-decoration: none;
+    font-weight: 600;
+}
+.light-text{
+    color: #2b2b2b;
+}
+.dark-text{
+    color: #eaeaea;
+}
+
+.width-100{
+    width: 100%;
+}
+
+/* user image */
+.user-image-name{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.lines-font-padding{
+    font-size: 1.1em;
+    padding-top: 1em;
+}
+
+.items-align{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.one-item-align{
+    align-self: end;
+}
+
+.user-delete-question{
+    font-size: 1.5em;
+}

@@ -1,0 +1,10 @@
+body{
+    background: rgb(255, 255, 255);
+}
+.background-light{
+    background: white;
+}
+.search-array{
+    width: 100%;
+    min-height: 300px;
+}
