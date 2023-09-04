@@ -16,7 +16,9 @@ export const EditUserModal = (props: UserObjectType) => {
 
     const onFinish = async (values: UserEditModelTypes) => {
         const payload = {
-            name: `${values.firstName} ${values.secondName} ${values.thirdName}`,
+            firstName: values.firstName,
+            secondName: values.secondName,
+            thirdName: values.thirdName,
             gitlabId: values.gitlabId,
             discordId: values.discordId
         }

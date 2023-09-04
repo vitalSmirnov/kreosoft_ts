@@ -15,15 +15,14 @@ instance.interceptors.request.use((config) => {
 function getProject(id : string){
     return instance.get(`/projects/${id}`, )
         .then(response => {
-            if (response.status === 200){
-                return {
-                    status: response.status,
-                    data: response.data
-                };
-            }
+            return {
+                status: response.status,
+                data: response.data
+            };
         })
         .catch(error => {
             return {
+                data: "error",
                 status: error.response.status,
                 error: error.response.statusText
             };
@@ -32,16 +31,14 @@ function getProject(id : string){
 function getProjects(){
     return instance.get('/projects')
         .then(response => {
-            if (response.status === 200){
-                return {
-                    status: response.status,
-                    data: response.data
-                };
+            return{
+                status: response.status,
+                data: response.data
             }
         })
         .catch(error => {
-            console.log(error);
             return {
+                data: "error",
                 status: error.status,
                 message: error.response
             };

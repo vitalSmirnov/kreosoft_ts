@@ -1,15 +1,14 @@
-import {Layout, Spin} from "antd";
+import {Spin} from "antd";
 import {Navbar} from "../Components/Navbar";
 import {Outlet} from "react-router-dom"
 import {Suspense, useEffect} from "react";
 
-
 export const MainLayout = () => {
 
     useEffect(()=>{
-        if(sessionStorage.getItem("token") === null){
-            // @ts-ignore
-            sessionStorage.setItem("token", localStorage.getItem("token"));
+        if (sessionStorage.getItem("token") === null && localStorage.getItem("token") !== null) {
+            let tokenData = JSON.parse(localStorage.getItem("token") || "")
+            sessionStorage.setItem("token", tokenData);
         }
     }, [])
 

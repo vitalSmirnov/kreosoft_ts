@@ -21,7 +21,7 @@ const ProjectsPage : React.FC = () => {
 
     useEffect(()=> {
         useActions.ProjectsActionCreators();
-    }, [stateAction])
+    }, [useActions, stateAction])
 
     const selectProjectCallback = (id : string) => {
         useActions.ProjectActionCreator(id);

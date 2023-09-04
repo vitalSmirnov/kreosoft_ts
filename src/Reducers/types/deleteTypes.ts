@@ -1,5 +1,5 @@
 export interface DeleteType{
     name: string,
     id: string,
-    deleteFunction: (id: string) => any
+    deleteFunction(id: string) : void
 }

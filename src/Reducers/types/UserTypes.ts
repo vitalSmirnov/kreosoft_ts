@@ -1,8 +1,15 @@
+
 export interface UserObjectType {
     name: string,
     discordId: string,
     gitlabId: string,
     id: string
+}
+
+export interface UserRegisterType{
+    login?: string,
+    email?: string,
+    password: string
 }
 
 
@@ -15,14 +22,14 @@ export interface UserEditModelTypes{
 }
 
 export interface SelectProps {
-    selectCallback: any,
-    createCallback: any,
+    selectCallback(id: string): void;
+    createCallback(): void;
     objects: any[]
 }
 
 interface GetUsersAction{
     type: UserActionTypes.GET_USERS,
-    users: any[],
+    users: UserObjectType[],
     status: number,
     error: null | string
 }
@@ -46,12 +53,13 @@ interface DeleteAction{
 }
 
 export interface UserState{
-    users: any[];
+    users: UserObjectType[];
     user: UserObjectType,
     loading: boolean;
     error: null | number;
     message: null | string;
 }
+
 
 export type UserAction = GetUsersAction | GetUserAction | EditAction | DeleteAction;
 

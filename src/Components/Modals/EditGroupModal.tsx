@@ -1,8 +1,7 @@
 import {Button, Col, Form, Input, Modal, Row} from "antd";
-import {EditOutlined, EyeInvisibleOutlined, EyeTwoTone} from "@ant-design/icons";
+import {EditOutlined} from "@ant-design/icons";
 import {SelectUsersComponent} from "../SelectUsersComponent";
 import React, {useState} from "react";
-import FormItemLabel from "antd/es/form/FormItemLabel";
 import {PollComponent} from "../PollComponent";
 
 interface IGroupProps{
@@ -10,7 +9,7 @@ interface IGroupProps{
     selectedUsers: any[]
 }
 
-export const EditGroupModal = ({groups, selectedUsers} : IGroupProps) => {
+export const EditGroupModal = ({selectedUsers} : IGroupProps) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,6 +33,7 @@ export const EditGroupModal = ({groups, selectedUsers} : IGroupProps) => {
                                         required: true,
                                         message: 'Введите название',
                                     },
+
                                 ]}
                             >
                                     <Input type={"text"}/>
@@ -44,7 +44,7 @@ export const EditGroupModal = ({groups, selectedUsers} : IGroupProps) => {
                         <SelectUsersComponent selectedUsers={selectedUsers}/>
                     </Row>
                     <Row>
-                        <PollComponent polls={[]}/>
+                        <PollComponent/>
                     </Row>
                 </Col>
 

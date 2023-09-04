@@ -1,9 +1,4 @@
-import { ComponentType, ReactElement } from 'react';
-
-export interface IOptions {
-    label: string;
-    value: string;
-}
+import {ReactElement } from 'react';
 
 export interface IRoute {
     path: string;

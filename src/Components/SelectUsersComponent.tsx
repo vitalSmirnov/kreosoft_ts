@@ -1,11 +1,12 @@
-import {Button, Checkbox, Col, Empty, Input, List, Radio, Row} from "antd";
+import {Button, Checkbox, Col, Empty, Input, List, Row} from "antd";
 import {SearchOutlined, CloseOutlined} from "@ant-design/icons";
 import {useEffect, useState} from "react";
 import {UseActions} from "../hooks/UseActions";
 import {useTypedSelector} from "../hooks/SelectorHook";
+import {UserEditModelTypes, UserObjectType} from "../Reducers/types/UserTypes";
 
 interface ISelectedProps{
-    selectedUsers: any[]
+    selectedUsers: UserObjectType[]
 }
 
 export const SelectUsersComponent = ({selectedUsers} : ISelectedProps) => {
@@ -28,7 +29,7 @@ export const SelectUsersComponent = ({selectedUsers} : ISelectedProps) => {
                 item.name.toLowerCase().includes(searchValue.toLowerCase())
             )
         );
-    }, [searchValue]);
+    }, [searchValue, users]);
 
     return(
         <>
@@ -44,7 +45,7 @@ export const SelectUsersComponent = ({selectedUsers} : ISelectedProps) => {
                 <Row>
                     <Col span={12} className={"col-right-padding"}>
                         <List bordered className={"search-array"}>
-                            {selectedUsers.length > 0 ? selectedUsers.map((item, index) => {
+                            {selectedUsers.length > 0 ? selectedUsers.map((item) => {
                                 return <List.Item key={item.id}>
                                     <div className={"list-items-justify"}>
                                         <span>{item.name}</span>
@@ -56,7 +57,7 @@ export const SelectUsersComponent = ({selectedUsers} : ISelectedProps) => {
                     </Col>
                     <Col span={12} className={"col-left-padding"}>
                         <List bordered className={"search-array"}>
-                            {searchArray.map((item, index) => {
+                            {searchArray.map((item) => {
                                 return <List.Item key={item.id}>
                                     <div className={"list-items-justify"}>
                                         <span>{item.name}</span>

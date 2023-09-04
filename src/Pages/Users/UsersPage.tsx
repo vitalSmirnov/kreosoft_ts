@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {SelectComponent} from "../../Components/SelectComponent";
-import {Layout, Row, Col, Spin} from "antd";
+import {Layout, Row, Col} from "antd";
 import "./UsersPage.css"
 import {WatchUserComponent} from "../../Components/WatchUserComponent";
 import {AddUserComponent} from "../../Components/AddUserComponent";
 import {UseActions} from "../../hooks/UseActions";
-import {useTypedSelector} from "../../hooks/SelectorHook";;
+import {useTypedSelector} from "../../hooks/SelectorHook";
 
 const UsersPage : React.FC = () => {
 
@@ -21,7 +21,7 @@ const UsersPage : React.FC = () => {
 
     useEffect(()=> {
         useActions.UsersActionCreators();
-    }, [])
+    }, [useActions])
 
 
     const selectUserCallBack = (id : string) => {

@@ -25,7 +25,7 @@ export const Login = () => {
         if(message === "success"){
             navigate("/users")
         }
-    }, [message])
+    }, [navigate, message])
 
     return (
       <>
@@ -120,8 +120,8 @@ export const Login = () => {
                           <span className={"header"}>Новости:</span>
                           <Divider/>
                           <div className={"container news-links"}>
-                              <a className={"news-link-item"}>Lorem ipsum dolor sit amet.</a>
-                              <a className={"news-link-item"}>Новый релиз</a>
+                              <a href="/#" className={"news-link-item"}>Lorem ipsum dolor sit amet.</a>
+                              <a href="/#" className={"news-link-item"}>Новый релиз</a>
                           </div>
                       </Row>
                   </Col>

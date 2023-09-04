@@ -40,10 +40,10 @@ export const SelectComponent = ({selectCallback, createCallback, objects}: Selec
                     <Divider/>
                     <Row>
                         <List className={"search-array"}>
-                            {searchArray.map((item, index)=> {
+                            {searchArray.map((item)=> {
                                 return(
                                   <List.Item key={item.id}>
-                                      <a className={"object-link-non-decorate light-text"} onClick={() => selectCallback(item.id)}>{item.name}</a>
+                                      <a href="/#" className={"object-link-non-decorate light-text"} onClick={() => selectCallback(item.id)}>{item.name}</a>
                                   </List.Item>
                                 );
                             })}

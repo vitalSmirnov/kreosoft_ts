@@ -1,4 +1,5 @@
 import axios from "axios";
+import {UserRegisterType} from "../../Reducers/types/UserTypes";
 
 export interface ILogin {
     email: string,
@@ -21,21 +22,20 @@ instance.interceptors.request.use((config) => {
 function loginUser(data : ILogin){
     return instance.post('/auth/login', data)
         .then(response => {
-            if (response.status === 200){
-                return {
-                    status: response.status,
-                    data: response.data
-                };
-            }
+            return {
+                status: response.status,
+                data: response.data,
+            };
         })
         .catch(error => {
             return {
+                data: "error",
                 status: error.response.status,
                 error: error.response.statusText
             };
         })
 }
-function registerUser(data : any){
+function registerUser(data : UserRegisterType){
     return instance.post('/login', data)
         .then(response => {
             if (response.status === 200){
@@ -47,23 +47,23 @@ function registerUser(data : any){
         })
         .catch(error => {
             return {
+                data: "error",
                 status: error.status,
                 message: error.response
             };
         })
 }
-function logoutUser(data : any){
-    return instance.post('/login', data)
+function logoutUser(){
+    return instance.post('/login')
         .then(response => {
-            if (response.status === 200){
-                return {
-                    status: response.status,
-                    data: response.data
-                };
-            }
+            return {
+                status: response.status,
+                data: response.data
+            };
         })
         .catch(error => {
             return {
+                data: "error",
                 status: error.status,
                 message: error.response
             };

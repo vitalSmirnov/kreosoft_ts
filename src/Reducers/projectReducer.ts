@@ -1,14 +1,8 @@
-import {ProjectAction, ProjectState, ProjectUserTypes} from "./types/projectTypes";
+import {ProjectAction, ProjectState, ProjectUserTypes, ProjectType} from "./types/projectTypes";
 
 
 const initialState: ProjectState = {
-    project: {
-        name: "",
-        id: "",
-        groups: [],
-        users: [],
-        repositories: []
-    },
+    project: {} as ProjectType,
     projects: [],
     loading: false,
     message: "",

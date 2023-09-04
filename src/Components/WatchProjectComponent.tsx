@@ -7,7 +7,7 @@ import {EditGroupModal} from "./Modals/EditGroupModal";
 
 interface ProjectProps{
     project: ProjectType,
-    deleteAction : (id: string) => any
+    deleteAction(id: string) : void
 }
 export const WatchProjectComponent = ({project, deleteAction}: ProjectProps) => {
 
@@ -29,7 +29,7 @@ export const WatchProjectComponent = ({project, deleteAction}: ProjectProps) => 
                         </Space>
                     </div>
                     <List bordered className={"width-100 min-h-container"}>
-                        {project.groups.length > 0? project.groups.map((item, index) => {
+                        {project.groups.length > 0? project.groups.map((item) => {
                             return <List.Item key={item.id}>
                                 <span>{item.tittle}</span>
                             </List.Item>
@@ -45,7 +45,7 @@ export const WatchProjectComponent = ({project, deleteAction}: ProjectProps) => 
                         </Space>
                     </div>
                     <List bordered className={"width-100 min-h-container"}>
-                        {project.users.length > 0? project.users.map((item, index) => {
+                        {project.users.length > 0? project.users.map((item) => {
                             return <List.Item key={item.id}>
                                 <span>{item.name}</span>
                             </List.Item>
@@ -61,7 +61,7 @@ export const WatchProjectComponent = ({project, deleteAction}: ProjectProps) => 
                         </Space>
                     </div>
                     <List bordered className={"width-100 min-h-container"}>
-                        {project.repositories.length > 0? project.repositories.map((item, index) => {
+                        {project.repositories.length > 0? project.repositories.map((item) => {
                             return <List.Item key={item.id}>
                                 <div className={"display-column"}>
                                     <span className={"repository-label"}>{item.tittle}</span>

@@ -1,14 +1,9 @@
-import {UserAction, UserActionTypes, UserState} from "./types/UserTypes";
+import {UserAction, UserActionTypes, UserObjectType, UserState} from "./types/UserTypes";
 
 
 const initialState : UserState = {
     users: [],
-    user:{
-        name: "",
-        gitlabId : "",
-        discordId: "",
-        id: ""
-    },
+    user: {} as UserObjectType,
     loading: false,
     message: "",
     error: null,

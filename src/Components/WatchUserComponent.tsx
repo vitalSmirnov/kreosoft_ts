@@ -1,16 +1,11 @@
 import {Space, Col, Row} from 'antd';
 import {EditUserModal} from "./Modals/EditUserModal";
 import {DeleteModal} from "./Modals/DeleteModal";
-import {EditRepositoryModal} from "./Modals/EditRepositoryModal";
+import {UserObjectType} from "../Reducers/types/UserTypes";
 
 interface UserObject {
-    user: {
-        name: string
-        discordId: string,
-        gitlabId: string,
-        id: string
-    },
-    deleteAction: any
+    user: UserObjectType,
+    deleteAction(id:string): void
 }
 
 export const WatchUserComponent = ({user, deleteAction} : UserObject) => {

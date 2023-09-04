@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Button, Col, Form, Input, Modal, Row} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
-import {UseActions} from "../../hooks/UseActions";
 
 interface RepositoryData {
     tittle: string,
@@ -9,7 +8,6 @@ interface RepositoryData {
 }
 
 export const EditRepositoryModal = () => {
-    const useActions = UseActions();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {

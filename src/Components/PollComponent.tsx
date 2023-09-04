@@ -1,10 +1,7 @@
 import {Button, Col, DatePicker, Form, Input, Row} from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 
-interface IPollProps{
-    polls: any[]
-}
-export const PollComponent = ({polls} : IPollProps) => {
+export const PollComponent = () => {
 
 
     return (
