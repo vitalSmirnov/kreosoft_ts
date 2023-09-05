@@ -1,15 +1,21 @@
-import {legacy_createStore, combineReducers, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import {authReducer} from "../Reducers/authReducer";
-import {userReducer} from "../Reducers/userReducer";
-import {projectReducer} from "../Reducers/projectReducer";
+import {combineReducers} from 'redux';
 
-const reducers  = combineReducers({
-    authorization: authReducer,
-    users: userReducer,
-    projects: projectReducer
-});
+import {configureStore} from "@reduxjs/toolkit";
+import userReducer from "./reducers/UserSlice";
+import authReducer from "./reducers/AuthorizationSlice";
 
-export const store = legacy_createStore(reducers, applyMiddleware(thunk));
+const rootReducer = combineReducers({
+    userReducer,
+    authReducer
+})
 
-export type RootState = ReturnType<typeof reducers>;
+export const setupStore = () => {
+    return configureStore({
+      reducer: rootReducer
+    })
+}
+
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

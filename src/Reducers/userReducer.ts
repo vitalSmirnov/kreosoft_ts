@@ -1,6 +1,6 @@
 import {UserAction, UserActionTypes, UserObjectType, UserState} from "./types/UserTypes";
 
-
+/*
 const initialState : UserState = {
     users: [],
     user: {} as UserObjectType,
@@ -35,4 +35,4 @@ export function userReducer(state=initialState, action: UserAction) : UserState{
             return newState;
 
     }
-}
+}*/
