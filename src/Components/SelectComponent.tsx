@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Button, Col, Divider, Input, List, Row, Space} from "antd";
-import {BtnState, SelectProps} from "../Reducers/types/UserTypes";
+import {BtnState} from "../models/IBtnState";
+import {SelectProps} from "../models/IUser";
+
 
 
 export const SelectComponent = ({selectCallback, createCallback, objects}: SelectProps ) => {

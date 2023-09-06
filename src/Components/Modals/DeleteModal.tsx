@@ -1,10 +1,10 @@
 import {useState} from "react";
 import {Button, Col, Modal, Row} from "antd";
 import {DeleteOutlined} from "@ant-design/icons";
-import {DeleteType} from "../../Reducers/types/deleteTypes";
+import {IDeleteProps} from "../../models/IDelete";
 
 
-export const DeleteModal = (props: DeleteType) => {
+export const DeleteModal = (props: IDeleteProps) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {

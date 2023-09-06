@@ -1,17 +1,17 @@
 import {Button, Checkbox, Col, Empty, Input, List, Row} from "antd";
 import {SearchOutlined, CloseOutlined} from "@ant-design/icons";
 import {useEffect, useState} from "react";
-import {UseActions} from "../hooks/UseActions";
-import {useTypedSelector} from "../hooks/SelectorHook";
-import {UserEditModelTypes, UserObjectType} from "../Reducers/types/UserTypes";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {fetchUsers} from "../store/actionCreators/userActionCreator";
+import {IUser} from "../models/IUser";
 
 interface ISelectedProps{
-    selectedUsers: UserObjectType[]
+    selectedUsers: IUser[]
 }
 
 export const SelectUsersComponent = ({selectedUsers} : ISelectedProps) => {
-    const useActions = UseActions();
-    const {users} = useTypedSelector((state) => state.users);
+    const dispatch = useAppDispatch();
+    const {users} = useAppSelector(state => state.userReducer);
     const [searchValue, setSearchValue] = useState("");
     const [searchArray, setSearchArray] = useState(users);
 
@@ -20,8 +20,8 @@ export const SelectUsersComponent = ({selectedUsers} : ISelectedProps) => {
     }
 
     useEffect(()=> {
-        useActions.UsersActionCreators();
-    }, [useActions])
+        dispatch(fetchUsers())
+    }, [ ])
 
     useEffect(() => {
         setSearchArray(

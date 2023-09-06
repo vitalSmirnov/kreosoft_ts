@@ -1,12 +1,12 @@
-import {ProjectType} from "../Reducers/types/projectTypes";
-import {Button, Col, Divider, Empty, List, Row, Space} from "antd";
-import {DeleteModal} from "./Modals/DeleteModal";
+
+import {Button, Col, Divider, Empty, List, Row, Space} from "antd";import {DeleteModal} from "./Modals/DeleteModal";
 import {EditRepositoryModal} from "./Modals/EditRepositoryModal";
 import {EditUsersInProjectModal} from "./Modals/EditUsersInProjectModal";
 import {EditGroupModal} from "./Modals/EditGroupModal";
+import {ProjectModel} from "../models/IProject";
 
 interface ProjectProps{
-    project: ProjectType,
+    project: ProjectModel,
     deleteAction(id: string) : void
 }
 export const WatchProjectComponent = ({project, deleteAction}: ProjectProps) => {

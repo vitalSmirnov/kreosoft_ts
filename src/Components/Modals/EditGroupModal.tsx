@@ -3,13 +3,11 @@ import {EditOutlined} from "@ant-design/icons";
 import {SelectUsersComponent} from "../SelectUsersComponent";
 import React, {useState} from "react";
 import {PollComponent} from "../PollComponent";
+import {ProjectModel} from "../../models/IProject";
 
-interface IGroupProps{
-    groups: any[],
-    selectedUsers: any[]
-}
 
-export const EditGroupModal = ({selectedUsers} : IGroupProps) => {
+
+export const EditGroupModal = ({users, groups, id, name} : ProjectModel) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 

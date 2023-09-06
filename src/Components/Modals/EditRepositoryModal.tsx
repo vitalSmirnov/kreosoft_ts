@@ -1,11 +1,8 @@
 import React, {useState} from "react";
 import {Button, Col, Form, Input, Modal, Row} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
+import {RepositoryModel} from "../../models/IProject";
 
-interface RepositoryData {
-    tittle: string,
-    url: string
-}
 
 export const EditRepositoryModal = () => {
 
@@ -14,7 +11,7 @@ export const EditRepositoryModal = () => {
         setIsModalOpen(true);
     };
 
-    const onFinish = async (values : RepositoryData) => {
+    const onFinish = async (values : RepositoryModel) => {
         console.log(values)
         setIsModalOpen(false);
     };

@@ -73,9 +73,3 @@ export enum UserActionTypes {
     EDIT_USER = "EDIT_USER",
     DELETE_USER = "DELETE_USER",
 }
-
-
-export enum BtnState{
-    active= "primary",
-    default = "default"
-}

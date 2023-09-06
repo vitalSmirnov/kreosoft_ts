@@ -1,10 +1,10 @@
 import {Space, Col, Row} from 'antd';
 import {EditUserModal} from "./Modals/EditUserModal";
 import {DeleteModal} from "./Modals/DeleteModal";
-import {UserObjectType} from "../Reducers/types/UserTypes";
+import {IUser} from "../models/IUser";
 
 interface UserObject {
-    user: UserObjectType,
+    user: IUser,
     deleteAction(id:string): void
 }
 

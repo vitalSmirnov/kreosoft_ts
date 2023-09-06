@@ -28,9 +28,9 @@ export const fetchUsers = createAsyncThunk(
 )
 export const fetchUser = createAsyncThunk(
     'user',
-    async (_, thunkAPI) => {
+    async (userId: string, thunkAPI) => {
         try{
-            const response = await instance.get<IUser>('/user')
+            const response = await instance.get<IUser>(`/user/${userId}`)
             return response.data;
         }
         catch(e){

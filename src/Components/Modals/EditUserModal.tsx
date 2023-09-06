@@ -1,29 +1,32 @@
 import {useState} from "react";
 import {Button, Col, Form, Input, Modal, Row} from "antd";
 import {EditOutlined} from "@ant-design/icons";
-import {UserEditModelTypes, UserObjectType} from "../../Reducers/types/UserTypes";
 import {UseActions} from "../../hooks/UseActions";
+import {IUser, UserEditModel} from "../../models/IUser";
+import {useAppDispatch} from "../../hooks/redux";
+import {editUser, fetchUser} from "../../store/actionCreators/userActionCreator";
 
 
-export const EditUserModal = (props: UserObjectType) => {
+export const EditUserModal = (props: IUser) => {
     const useActions = UseActions();
-
+    const dispatch = useAppDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const userNameArray = props.name.split(" ")
     const showModal = () => {
         setIsModalOpen(true);
     };
 
-    const onFinish = async (values: UserEditModelTypes) => {
-        const payload = {
-            firstName: values.firstName,
-            secondName: values.secondName,
-            thirdName: values.thirdName,
+    const onFinish = async (values: IUser) => {
+        const payload : UserEditModel = {
+            firstName: userNameArray[0],
+            secondName: userNameArray[1],
+            thirdName: userNameArray[2],
             gitlabId: values.gitlabId,
-            discordId: values.discordId
+            discordId: values.discordId,
+            id: props.id
         }
-        await useActions.EditUserActionCreators(props.id, payload);
-        useActions.UsersActionCreators();
+        await dispatch(editUser(payload));
+        dispatch(fetchUser(payload.id))
         setIsModalOpen(false);
     };
 
