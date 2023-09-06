@@ -35,7 +35,7 @@ export const userSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [fetchUsers.pending.type]: (state, action: PayloadAction<IUser[]>)=> {
+        [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>)=> {
             state.users = action.payload;
             state.isLoading = false;
             state.error = '';
@@ -49,7 +49,7 @@ export const userSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [fetchUser.pending.type]: (state, action: PayloadAction<IUser>)=> {
+        [fetchUser.fulfilled.type]: (state, action: PayloadAction<IUser>)=> {
             state.user = action.payload;
             state.isLoading = false;
             state.error = '';
@@ -62,7 +62,7 @@ export const userSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [editUser.pending.type]: (state, action: PayloadAction<IUser>)=> {
+        [editUser.fulfilled.type]: (state, action: PayloadAction<IUser>)=> {
             state.user = action.payload;
             state.isLoading = false;
             state.error = '';
@@ -75,7 +75,7 @@ export const userSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [deleteUser.pending.type]: (state)=> {
+        [deleteUser.fulfilled.type]: (state)=> {
             state.isLoading = false;
             state.error = '';
         },

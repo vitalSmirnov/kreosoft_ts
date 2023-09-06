@@ -4,8 +4,8 @@ import {Layout, Row, Col} from "antd";
 import "./UsersPage.css"
 import {WatchUserComponent} from "../../Components/WatchUserComponent";
 import {AddUserComponent} from "../../Components/AddUserComponent";
-import {UseActions} from "../../hooks/UseActions";
-import {useTypedSelector} from "../../hooks/SelectorHook";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {deleteUser, fetchUser, fetchUsers} from "../../store/actionCreators/userActionCreator";
 
 const UsersPage : React.FC = () => {
 
@@ -15,17 +15,17 @@ const UsersPage : React.FC = () => {
         SelectUser
     }
 
-    const useActions = UseActions();
-    const {user, users} = useTypedSelector((state) => state.users);
+    const dispatch = useAppDispatch();
+    const {users, user} = useAppSelector(state => state.userReducer);
     const [stateAction, setStateAction] = useState(ActionType.Default);
 
     useEffect(()=> {
-        useActions.UsersActionCreators();
-    }, [useActions])
+        dispatch(fetchUsers())
+    }, [ ])
 
 
     const selectUserCallBack = (id : string) => {
-        useActions.UserActionCreators(id);
+        dispatch(fetchUser(id))
         setStateAction(ActionType.SelectUser);
     };
 
@@ -43,7 +43,8 @@ const UsersPage : React.FC = () => {
                     <SelectComponent selectCallback={selectUserCallBack} createCallback={addUserCallback} objects={users}/>
                 </Col>
                 <Col span={16} className={"container-wrapper"}>
-                    {stateAction === ActionType.SelectUser? <WatchUserComponent key={user.id} deleteAction={(id: string) => useActions.DeleteUserActionCreators(id)} user={user}/> : stateAction === ActionType.AddUser? <AddUserComponent/>: <></>}
+                    {stateAction === ActionType.SelectUser? <WatchUserComponent key={user.id} deleteAction={(id: string) => dispatch(deleteUser(id))} user={user}/> :
+                        stateAction === ActionType.AddUser? <AddUserComponent/>: <></>}
                 </Col>
             </Row>
         </Layout>

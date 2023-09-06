@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
     async (data: UserRegisterModel, thunkAPI) => {
         try {
             const response = await instance.post<IToken>('auth/login', data)
-            return response.data;
+            return response.data.token;
         } catch (e) {
             return thunkAPI.rejectWithValue("Ошибка")
         }
@@ -30,7 +30,7 @@ export const registration = createAsyncThunk(
     async (data: UserRegisterModel, thunkAPI) => {
         try{
             const response = await instance.post<IToken>('auth/registration', data)
-            return response.data;
+            return response.data.token;
         }
         catch(e){
             return thunkAPI.rejectWithValue("Ошибка")

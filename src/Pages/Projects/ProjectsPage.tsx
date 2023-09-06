@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {SelectComponent} from "../../Components/SelectComponent";
 import {Layout, Row, Col} from "antd";
-import {UseActions} from "../../hooks/UseActions";
-import {useTypedSelector} from "../../hooks/SelectorHook";
 import {AddProjectComponent} from "../../Components/AddProjectComponent";
 
 import "./ProjectPage.css"
 import {WatchProjectComponent} from "../../Components/WatchProjectComponent";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {fetchProject, fetchProjects} from "../../store/actionCreators/projectActionCreator";
+import {deleteUser} from "../../store/actionCreators/userActionCreator";
 const ProjectsPage : React.FC = () => {
 
     enum ActionType{
@@ -16,15 +17,15 @@ const ProjectsPage : React.FC = () => {
     }
 
     const [stateAction, setStateAction] = useState(ActionType.Default);
-    const useActions = UseActions();
-    const {project, projects} = useTypedSelector((state) => state.projects);
+    const dispatch = useAppDispatch()
+    const {project, projects} = useAppSelector(state => state.projectReducer)
 
     useEffect(()=> {
-        useActions.ProjectsActionCreators();
-    }, [useActions, stateAction])
+       dispatch(fetchProjects());
+    }, [ ])
 
     const selectProjectCallback = (id : string) => {
-        useActions.ProjectActionCreator(id);
+        dispatch(fetchProject(id));
         setStateAction(ActionType.SelectProject)
     };
 
@@ -45,7 +46,7 @@ const ProjectsPage : React.FC = () => {
                 <Col span={16} className={"container-wrapper"}>
                     {
                         stateAction === ActionType.AddProject? <AddProjectComponent/>:
-                        stateAction === ActionType.SelectProject? <WatchProjectComponent deleteAction={(id) => useActions.DeleteUserActionCreators(id)} key={project.id} project={project}/> :
+                        stateAction === ActionType.SelectProject? <WatchProjectComponent deleteAction={(id) => dispatch(deleteUser(id))} key={project.id} project={project}/> :
                             <></>
                     }
                 </Col>

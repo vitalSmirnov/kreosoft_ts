@@ -25,7 +25,7 @@ export const WatchProjectComponent = ({project, deleteAction}: ProjectProps) => 
                     <div className={"display-flex"}>
                         <span className={"project-header-label"}>Группы: </span>
                         <Space className={"margin-initial"}>
-                            <EditGroupModal groups={[]} selectedUsers={[]}/>
+                            <EditGroupModal groups={[]} users={[]} id={""} name={""} repositories={[]}/>
                         </Space>
                     </div>
                     <List bordered className={"width-100 min-h-container"}>

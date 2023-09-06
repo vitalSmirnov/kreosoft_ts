@@ -3,7 +3,7 @@ import {login, logout, registration} from "../actionCreators/authActionCreator";
 
 
 interface IAuth{
-    token: string,
+    token: string | null,
     isLoading: boolean,
     error: string
 }
@@ -21,39 +21,48 @@ export const authorizationsSlice = createSlice({
     reducers:{},
     extraReducers:{
         [login.pending.type]: (state)=> {
+            state.token = null;
             state.isLoading = true;
         },
         [login.rejected.type]: (state, action: PayloadAction<string>)=> {
+            state.token = null;
             state.error = action.payload;
             state.isLoading = false;
         },
-        [login.pending.type]: (state, action: PayloadAction<string>)=> {
+        [login.fulfilled.type]: (state, action: PayloadAction<string>)=> {
             state.token = action.payload;
+            sessionStorage.setItem("token", action.payload);
             state.isLoading = false;
-            state.error = '';
+            state.error = 'success';
+
         },
 
         [registration.pending.type]: (state)=> {
+            state.token = null;
             state.isLoading = true;
         },
         [registration.rejected.type]: (state, action: PayloadAction<string>)=> {
+            state.token = null;
             state.error = action.payload;
             state.isLoading = false;
         },
-        [registration.pending.type]: (state, action: PayloadAction<string>)=> {
+        [registration.fulfilled.type]: (state, action: PayloadAction<string>)=> {
             state.token = action.payload;
             state.isLoading = false;
             state.error = '';
         },
 
         [logout.pending.type]: (state)=> {
+            state.token = null;
             state.isLoading = true;
         },
         [logout.rejected.type]: (state, action: PayloadAction<string>)=> {
+            state.token = null;
             state.error = action.payload;
             state.isLoading = false;
         },
-        [logout.pending.type]: (state)=> {
+        [logout.fulfilled.type]: (state)=> {
+            state.token = null;
             state.isLoading = false;
             state.error = '';
         },

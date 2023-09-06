@@ -30,7 +30,7 @@ export const fetchUser = createAsyncThunk(
     'user',
     async (userId: string, thunkAPI) => {
         try{
-            const response = await instance.get<IUser>(`/user/${userId}`)
+            const response = await instance.get<IUser>(`/users/${userId}`)
             return response.data;
         }
         catch(e){

@@ -9,6 +9,7 @@ export const SelectComponent = ({selectCallback, createCallback, objects}: Selec
     const [value, setValue] = useState("");
     const [btnState, setBtnState] = useState(BtnState.default);
     const [searchArray, setSearchArray] = useState(objects);
+    console.log(objects, "users")
     const onSearch = (value:string) => {
         setValue(value);
     }
@@ -45,7 +46,7 @@ export const SelectComponent = ({selectCallback, createCallback, objects}: Selec
                             {searchArray.map((item)=> {
                                 return(
                                   <List.Item key={item.id}>
-                                      <a href="/#" className={"object-link-non-decorate light-text"} onClick={() => selectCallback(item.id)}>{item.name}</a>
+                                      <a className={"object-link-non-decorate light-text"} onClick={() => selectCallback(item.id)}>{item.name}</a>
                                   </List.Item>
                                 );
                             })}

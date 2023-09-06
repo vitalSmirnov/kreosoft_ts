@@ -39,7 +39,7 @@ export const EditGroupModal = ({users, groups, id, name} : ProjectModel) => {
                         </Form>
                     </Row>
                     <Row>
-                        <SelectUsersComponent selectedUsers={selectedUsers}/>
+                        <SelectUsersComponent selectedUsers={users}/>
                     </Row>
                     <Row>
                         <PollComponent/>

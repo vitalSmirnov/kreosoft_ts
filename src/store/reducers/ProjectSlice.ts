@@ -36,7 +36,7 @@ export const projectSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [fetchProject.pending.type]: (state, action: PayloadAction<ProjectModel>)=> {
+        [fetchProject.fulfilled.type]: (state, action: PayloadAction<ProjectModel>)=> {
             state.project = action.payload;
             state.isLoading = false;
             state.error = '';
@@ -49,7 +49,8 @@ export const projectSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [fetchProjects.pending.type]: (state, action: PayloadAction<ProjectModel[]>)=> {
+        [fetchProjects.fulfilled.type]: (state, action: PayloadAction<ProjectModel[]>)=> {
+            console.log(action.payload, "projects")
             state.projects = action.payload;
             state.isLoading = false;
             state.error = '';

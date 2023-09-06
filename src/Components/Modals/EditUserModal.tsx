@@ -1,14 +1,12 @@
 import {useState} from "react";
 import {Button, Col, Form, Input, Modal, Row} from "antd";
 import {EditOutlined} from "@ant-design/icons";
-import {UseActions} from "../../hooks/UseActions";
 import {IUser, UserEditModel} from "../../models/IUser";
 import {useAppDispatch} from "../../hooks/redux";
 import {editUser, fetchUser} from "../../store/actionCreators/userActionCreator";
 
 
 export const EditUserModal = (props: IUser) => {
-    const useActions = UseActions();
     const dispatch = useAppDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const userNameArray = props.name.split(" ")

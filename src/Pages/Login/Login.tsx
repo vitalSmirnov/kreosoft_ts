@@ -1,34 +1,37 @@
-import {Layout, Row, Col, Input, Button, Checkbox, Divider, Form} from "antd";
+import {Layout, Row, Col, Input, Button, Checkbox, Divider, Form, Spin} from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import "./login.css"
-import {ILogin} from "../../shared/api/AuthApi";
-import {UseActions} from "../../hooks/UseActions";
-import {useTypedSelector} from "../../hooks/SelectorHook";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {UserRegisterModel} from "../../models/IUser";
+import {login} from "../../store/actionCreators/authActionCreator";
 
 export const Login = () => {
 
     const navigate = useNavigate();
-    const {loginUserActionCreator} = UseActions();
-    const {message} = useTypedSelector((state) => state.authorization);
+    const dispatch = useAppDispatch();
+    const {error, token, isLoading} = useAppSelector(state => state.authReducer);
 
     const signinHandle = () => {
         navigate("/register")
     };
 
-    const onFinish = (values: ILogin) =>{
-        loginUserActionCreator(values)
+    const onFinish = (values: UserRegisterModel) =>{
+        dispatch(login(values));
     };
 
-    useEffect(()=> {
-        if(message === "success"){
+    useEffect(() => {
+        if (token !== null && error === 'success'){
             navigate("/users")
         }
-    }, [navigate, message])
+    }, [token]);
+
 
     return (
       <>
+          {isLoading && <Spin/>}
+          {!isLoading &&
           <Layout>
               <Row>
                   <Col span={8}>
@@ -126,9 +129,7 @@ export const Login = () => {
                       </Row>
                   </Col>
               </Row>
-
-
-          </Layout>
-      </>
+          </Layout>}
+          </>
     );
 }
