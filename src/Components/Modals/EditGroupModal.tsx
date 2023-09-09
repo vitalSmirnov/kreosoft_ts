@@ -4,6 +4,7 @@ import {SelectUsersComponent} from "../SelectUsersComponent";
 import React, {useState} from "react";
 import {PollComponent} from "../PollComponent";
 import {ProjectModel} from "../../models/IProject";
+import {PollDynamicComponent} from "../PollDynamicComponent";
 
 
 
@@ -42,7 +43,7 @@ export const EditGroupModal = ({users, groups, id, name} : ProjectModel) => {
                         <SelectUsersComponent selectedUsers={users}/>
                     </Row>
                     <Row>
-                        <PollComponent/>
+                        <PollDynamicComponent/>
                     </Row>
                 </Col>
 
