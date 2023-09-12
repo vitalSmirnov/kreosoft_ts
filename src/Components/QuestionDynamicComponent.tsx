@@ -1,5 +1,5 @@
-import {Button, Form, Input} from "antd";
-import {MinusCircleOutlined, PlusOutlined} from "@ant-design/icons";
+import {Button, Col, Form, Input, Row} from "antd";
+import {DeleteOutlined, MinusCircleOutlined, PlusOutlined} from "@ant-design/icons";
 import React from "react";
 
 
@@ -44,25 +44,31 @@ export const QuestionDynamicComponent = () => {
                                                 message: "Введите текст вопроса",
                                             },
                                         ]}
-                                        noStyle
                                     >
-                                        <Input placeholder="Вопрос" />
+                                        <Row >
+                                            <Col span={22}>
+                                                <Input placeholder="Вопрос" />
+                                            </Col>
+                                            <Col span={2} className={"display-flex justify-content-right"}>
+                                                {fields.length > 1 ? (
+                                                    <Button
+                                                        className={"dynamic-delete-button red"}
+                                                        icon={<DeleteOutlined/>}
+                                                        onClick={() => remove(field.name)}>
+                                                    </Button>
+                                                ): null}
+                                            </Col>
+                                        </Row>
                                     </Form.Item>
-                                    {fields.length > 1 ? (
-                                        <MinusCircleOutlined
-                                            className="dynamic-delete-button"
-                                            onClick={() => remove(field.name)}
-                                        />
-                                    ) : null}
                                 </Form.Item>
                             ))}
                             <Form.Item>
-                                <span>Вопрос</span>
+                                <span className={"project-label"} >Вопросы: </span>
                                 <Button
-                                    type="dashed"
+                                    type="primary"
                                     onClick={() => add()}
-                                    style={{ width: '60%' }}
-                                    icon={<PlusOutlined />}>
+                                    icon={<PlusOutlined/>}>
+                                    {fields.length > 0 ? "Добавить вопрос" : ""}
                                 </Button>
                                 <Form.ErrorList errors={errors} />
                             </Form.Item>

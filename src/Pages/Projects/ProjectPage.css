@@ -4,6 +4,9 @@
     font-weight: bold;
     line-height: 50px;
 }
+.padding-btn{
+    margin: 1.3em;
+}
 
 .project-label {
     padding-top: 1em;
@@ -20,6 +23,21 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.poll-justify {
+    width: 100%;
+    margin-bottom: 1em;
+    display: flex;
+}
+.justify-content-right{
+    justify-content: end;
+}
+
+.poll-border{
+    border: 1px lightgray dashed;
+    border-radius: 10px;
+    padding: 1em;
 }
 
 .row-bottom-padding {
@@ -52,4 +70,7 @@
     border: 2px #519dd4 dashed;
     border-radius: 10px;
     padding: 2em;
+}
+.red{
+    color: red;
 }

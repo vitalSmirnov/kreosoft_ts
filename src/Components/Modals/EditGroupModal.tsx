@@ -2,9 +2,9 @@ import {Button, Col, Form, Input, Modal, Row} from "antd";
 import {EditOutlined} from "@ant-design/icons";
 import {SelectUsersComponent} from "../SelectUsersComponent";
 import React, {useState} from "react";
-import {PollComponent} from "../PollComponent";
 import {ProjectModel} from "../../models/IProject";
 import {PollDynamicComponent} from "../PollDynamicComponent";
+import FormItemLabel from "antd/es/form/FormItemLabel";
 
 
 
@@ -43,6 +43,7 @@ export const EditGroupModal = ({users, groups, id, name} : ProjectModel) => {
                         <SelectUsersComponent selectedUsers={users}/>
                     </Row>
                     <Row>
+                        <span className={"project-label poll-justify"}>Опросники</span>
                         <PollDynamicComponent/>
                     </Row>
                 </Col>

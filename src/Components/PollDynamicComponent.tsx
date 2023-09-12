@@ -1,18 +1,26 @@
-import React from 'react';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import {Button, Col, DatePicker, Form, Input, Row} from 'antd';
+import React, {useState} from 'react';
+import {DeleteOutlined, PlusOutlined} from '@ant-design/icons';
+import {Button, Col, Form, Input, Row} from 'antd';
 import ButtonGroup from "antd/es/button/button-group";
 import {QuestionDynamicComponent} from "./QuestionDynamicComponent";
+import {ScheduleDynamicType} from "./ScheduleDynamicType";
+import {IScheduleType} from "../models/IScheduleType";
 
 
 export const PollDynamicComponent = () => {
+    const [scheduleType, scheduleTypeChanger] = useState(IScheduleType.daily);
     const onFinish = (values: any) => {
         console.log('Received values of form:', values);
     };
 
+    const scheduleTypeHandler = () => {
+        scheduleType === IScheduleType.daily? scheduleTypeChanger(IScheduleType.weekly): scheduleTypeChanger(IScheduleType.daily)
+    }
+
     return (
         <>
         <Form
+            className={"display-column poll-justify"}
             name="dynamic_form_item"
             onFinish={onFinish}
         >
@@ -24,6 +32,9 @@ export const PollDynamicComponent = () => {
                             if (!names || names.length < 1) {
                                 return Promise.reject(new Error('At least 1 poll'));
                             }
+                            if (!names || names.length > 4) {
+                                return Promise.reject(new Error('max 4 polls'));
+                            }
                         },
                     },
                 ]}
@@ -32,9 +43,9 @@ export const PollDynamicComponent = () => {
                     <>
                         {fields.map((field, index) => (
                             <Form.Item
-                                label={<span>Опрос</span>}
                                 required={true}
                                 key={field.key}
+                                className={"poll-border"}
                             >
                                 <Form.Item
                                     {...field}
@@ -46,7 +57,6 @@ export const PollDynamicComponent = () => {
                                             message: "",
                                         },
                                     ]}
-                                    noStyle
                                 >
                                     <Row>
                                         <Col span={16} className={"col-right-padding"}>
@@ -56,12 +66,11 @@ export const PollDynamicComponent = () => {
                                                     {
                                                         required: true,
                                                     },
-                                                ]}
-                                            >
+                                                ]}>
                                                 <Input/>
                                             </Form.Item>
                                         </Col>
-                                        <Col span={8} className={"col-left-padding"}>
+                                        <Col span={6} className={"col-left-padding"}>
                                             <Form.Item
                                                 label={"ID канала"}
                                                 rules={[
@@ -71,6 +80,17 @@ export const PollDynamicComponent = () => {
                                                 ]}
                                             >
                                                 <Input/>
+                                            </Form.Item>
+                                        </Col>
+                                        <Col span={2} className={"display-flex justify-content-right"}>
+                                            <Form.Item>
+                                                {fields.length > 1 ? (
+                                                    <Button
+                                                        className={"dynamic-delete-button red"}
+                                                        icon={<DeleteOutlined/>}
+                                                        onClick={() => remove(field.name)}>
+                                                    </Button>
+                                                ): null}
                                             </Form.Item>
                                         </Col>
                                     </Row>
@@ -84,39 +104,32 @@ export const PollDynamicComponent = () => {
                                             ]}
                                         >
                                             <ButtonGroup>
-                                                <Button type={"primary"}>Ежедневно</Button>
-                                                <Button>Еженедельно</Button>
+                                                <Button type={scheduleType === IScheduleType.daily ? "primary" : "default"}
+                                                        onClick={scheduleTypeHandler}
+                                                >
+                                                    Ежедневно
+                                                </Button>
+                                                <Button type={scheduleType === IScheduleType.weekly ? "primary" : "default"}
+                                                        onClick={scheduleTypeHandler}
+                                                >
+                                                    Еженедельно
+                                                </Button>
                                             </ButtonGroup>
                                         </Form.Item>
                                     </Row>
                                     <Row>
-                                        <Form.Item
-                                            label={"Время НН:ММ"}
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                },
-                                            ]}
-                                        >
-                                            <DatePicker/>
-                                        </Form.Item>
+                                        <ScheduleDynamicType type={scheduleType}/>
                                     </Row>
-                                    {fields.length > 1 ? (
-                                        <MinusCircleOutlined
-                                            className="dynamic-delete-button"
-                                            onClick={() => remove(field.name)}
-                                        />
-                                    ) : null}
                                 </Form.Item>
                                 <QuestionDynamicComponent/>
                             </Form.Item>
                         ))}
-                        <span>Опросники</span>
                         <Button
-                            type="dashed"
+                            className={"padding-btn"}
+                            type="primary"
                             onClick={() => add()}
-                            style={{ width: '60%' }}
                             icon={<PlusOutlined />}>
+                            {fields.length > 0?'Добавить опросник':''}
                         </Button>
                     </>
                 )}
